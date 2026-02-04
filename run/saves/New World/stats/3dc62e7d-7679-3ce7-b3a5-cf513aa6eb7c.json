@@ -1,0 +1,19 @@
+{
+  "stats": {
+    "minecraft:used": {
+      "minecraft:pig_spawn_egg": 3
+    },
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 273,
+      "minecraft:total_world_time": 273,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 3709,
+      "minecraft:sneak_time": 2,
+      "minecraft:play_time": 273,
+      "minecraft:damage_dealt": 24,
+      "minecraft:jump": 1,
+      "minecraft:time_since_death": 273
+    }
+  },
+  "DataVersion": 4671
+}

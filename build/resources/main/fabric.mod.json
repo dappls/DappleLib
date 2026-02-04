@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "dapplelib",
+  "version": "1.0-SNAPSHOT",
+  "name": "DappleLib",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/dapplelib/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "net.dappls.dapplelib.client.DapplelibClientDataGeneratorEntrypoint"
+    ],
+    "dapplelib-datagen": [
+      "net.dappls.dapplelib.client.DataGeneratorRegistries"
+    ],
+    "client": [
+      "net.dappls.dapplelib.client.DapplelibClient"
+    ],
+    "main": [
+      "net.dappls.dapplelib.Dapplelib"
+    ]
+  },
+  "mixins": [
+    "dapplelib.mixins.json",
+    {
+      "config": "dapplelib.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "accessWidener": "dapplelib.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "fabric-api": "*",
+    "minecraft": "1.21.11"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.dappls.dapplelib.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CustomAttackMixin",
+    "ModifyMovementMixin",
+    "PreventEatingMixin",
+    "PreventFallDamageMixin",
+    "PreventRidingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
