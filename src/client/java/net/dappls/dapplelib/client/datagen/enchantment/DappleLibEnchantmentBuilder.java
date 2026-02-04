@@ -1,4 +1,4 @@
-package net.dappls.dapplelib.datagen.enchantment;
+package net.dappls.dapplelib.client.datagen.enchantment;
 
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.enchantment.Enchantment;

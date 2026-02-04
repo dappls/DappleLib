@@ -1,4 +1,4 @@
-package net.dappls.dapplelib.datagen;
+package net.dappls.dapplelib.client.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;

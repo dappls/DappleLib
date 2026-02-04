@@ -1,12 +1,10 @@
-package net.dappls.dapplelib.datagen.enchantment;
+package net.dappls.dapplelib.client.datagen.enchantment;
 
 
-import net.dappls.dapplelib.Dapplelib;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
