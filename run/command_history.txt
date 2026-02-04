@@ -1,3 +1,0 @@
-/give Player917 dapplelib:test
-/give Player911 minecraft:acacia_log
-/give Player911 minecraft:furnace
