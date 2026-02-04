@@ -6,8 +6,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import java.util.List;
 
 public interface CustomPlayerAttackItem {
-    void applySoundAfterAttack(PlayerEntity player);
-    List<StatusEffectInstance> effectsAfterAttack();
-    void spawnParticleAfterAttack(PlayerEntity player, Entity target);
+    /*
+    Use to create particles, sounds, etc. Specific methods will be added to reduce boilerplate
+    code but otherwise use attackLogic.
+    */
+    void attackLogic(PlayerEntity player, Entity target);
 
+    default List<StatusEffectInstance> effectsAfterAttack() {
+        return List.of();}
 }

@@ -29,13 +29,12 @@ public abstract class CustomAttackMixin extends LivingEntity {
     public void DappleLib$CustomAttack(Entity target, CallbackInfo ci) {
         if(getAttackCooldownProgress(0.5F) > 0.9F) {
             if(this.getMainHandStack().getItem() instanceof CustomPlayerAttackItem customPlayerAttackItem) {
+                customPlayerAttackItem.attackLogic((PlayerEntity) (Object) this,target);
                 if(target instanceof LivingEntity) {
                     for(StatusEffectInstance effect : customPlayerAttackItem.effectsAfterAttack()) {
                         ((LivingEntity) target).addStatusEffect(effect);
                     }
                 }
-                customPlayerAttackItem.spawnParticleAfterAttack((PlayerEntity) (Object) this, target);
-                customPlayerAttackItem.applySoundAfterAttack((PlayerEntity) (Object) this);
             }
         }
     }

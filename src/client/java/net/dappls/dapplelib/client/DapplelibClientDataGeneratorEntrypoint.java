@@ -1,5 +1,6 @@
 package net.dappls.dapplelib.client;
 
+import net.dappls.dapplelib.client.datagen.lang.DappleLibLangProvider;
 import net.dappls.dapplelib.client.datagen.loot.DappleLibLootTableProvider;
 import net.dappls.dapplelib.client.datagen.model.DappleLibModelProvider;
 import net.dappls.dapplelib.client.datagen.recipe.DappleLibRecipeProvider;
@@ -26,6 +27,7 @@ public class DapplelibClientDataGeneratorEntrypoint implements DataGeneratorEntr
         pack.addProvider(DappleLibBlockTagProvider::new);
         pack.addProvider(DappleLibItemTagProvider::new);
         pack.addProvider(DappleLibLootTableProvider::new);
+        pack.addProvider(DappleLibLangProvider::new);
         List<DappleLibDataGenRegistry> registries = FabricLoader.getInstance()
                 .getEntrypoints("dapplelib-datagen", DappleLibDataGenRegistry.class);
         registries.forEach(dappleLibDataGenRegistry -> dappleLibDataGenRegistry.onInitializeDataGenerator(fabricDataGenerator,pack));

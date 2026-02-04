@@ -4,6 +4,7 @@ import net.dappls.dapplelib.client.datagen.loot.DappleLibLootTableProvider;
 import net.dappls.dapplelib.client.datagen.tags.DappleLibBlockTagProvider;
 import net.dappls.dapplelib.client.datagen.tags.DappleLibItemTagProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.data.recipe.RecipeGenerator;
@@ -12,30 +13,23 @@ import net.minecraft.registry.RegistryWrapper;
 
 
 public interface DappleLibDataGenRegistry {
-    default void registerRecipes(RecipeGenerator gen) {
-    }
+    void registerRecipes(RecipeGenerator gen);
 
-    default void registerItemModels(ItemModelGenerator gen) {
-    }
+    void registerItemModels(ItemModelGenerator gen);
 
-    default void registerBlockModels(BlockStateModelGenerator gen) {
-    }
+    void registerBlockModels(BlockStateModelGenerator gen);
 
-    default void registerBlockTags(DappleLibBlockTagProvider provider, RegistryWrapper.WrapperLookup wrapperLookup) {
-    }
+    void registerBlockTags(DappleLibBlockTagProvider provider, RegistryWrapper.WrapperLookup wrapperLookup);
 
-    default void registerItemTags(DappleLibItemTagProvider provider, RegistryWrapper.WrapperLookup wrapperLookup) {
-    }
+    void registerItemTags(DappleLibItemTagProvider provider, RegistryWrapper.WrapperLookup wrapperLookup);
 
-    default void registerLootTables(DappleLibLootTableProvider provider) {
-    }
+    void registerLootTables(DappleLibLootTableProvider provider);
 
-    default void registerEnchantments() {
-    }
+    void registerLang(RegistryWrapper.WrapperLookup wrapperLookup, FabricLanguageProvider.TranslationBuilder translationBuilder);
 
-    default void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator, FabricDataGenerator.Pack pack) {
-    }
+    void registerEnchantments();
 
-    default void buildRegistry(RegistryBuilder registryBuilder) {
-    }
+    void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator, FabricDataGenerator.Pack pack);
+
+    void buildRegistry(RegistryBuilder registryBuilder);
 }

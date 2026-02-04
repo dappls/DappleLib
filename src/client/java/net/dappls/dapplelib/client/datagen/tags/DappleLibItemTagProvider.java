@@ -4,11 +4,14 @@ import net.dappls.dapplelib.client.DappleLibDataGenRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -17,6 +20,15 @@ public class DappleLibItemTagProvider extends FabricTagProvider<Item> {
 
     public DappleLibItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, RegistryKeys.ITEM, registriesFuture);
+    }
+
+    public TagBuilder tag(TagKey<Item> tag, List<Item> items) {
+        TagBuilder builder = getTagBuilder(tag);
+        for (Item item : items) {
+            Identifier id = Registries.ITEM.getId(item);
+            builder.add(id);
+        }
+        return builder;
     }
 
     @Override
