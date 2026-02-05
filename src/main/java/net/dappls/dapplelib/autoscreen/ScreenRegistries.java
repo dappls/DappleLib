@@ -13,12 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class ScreenRegistryInternal {
+public final class ScreenRegistries {
 
     private static final List<RegisteredScreen> REGISTERED = new ArrayList<>();
     private static final Map<Class<? extends ScreenHandler>, ScreenHandlerType<?>> TYPE_BY_HANDLER = new HashMap<>();
 
-    private ScreenRegistryInternal() {}
+    private ScreenRegistries() {}
 
     public static void registerDiscovered(List<DiscoveredScreen> discovered) {
         for (DiscoveredScreen d : discovered) {

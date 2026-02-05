@@ -6,6 +6,6 @@ public final class ScreenKit {
 
     public static void scan(String basePackage, String modId) {
         var discovered = ScreenDiscovery.discover(basePackage, modId);
-        ScreenRegistryInternal.registerDiscovered(discovered);
+        ScreenRegistries.registerDiscovered(discovered);
     }
 }
