@@ -2,7 +2,7 @@ package net.dappls.dapplelib.client.events;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.util.math.Vec3d;
+import org.joml.Vector4f;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.List;
 @FunctionalInterface
 public interface ModifyFogEvent {
     Event<ModifyFogEvent> EVENT = EventFactory.createArrayBacked(ModifyFogEvent.class,
-            events -> (color, builder) -> {
+            events -> (builder) -> {
                 List<ModifyFogEvent> sortedEvents = new ArrayList<>(Arrays.asList(events));
                 sortedEvents.sort(Comparator.comparingInt(ModifyFogEvent::getPriority));
                 for (ModifyFogEvent event : sortedEvents) {
@@ -25,7 +25,7 @@ public interface ModifyFogEvent {
         return 1000;
     }
 
-    FogBuilder getFogBuilder(Vec3d color,FogBuilder fogBuilder);
+    FogBuilder getFogBuilder(FogBuilder fogBuilder);
 
 
     final class FogBuilder {
@@ -35,8 +35,10 @@ public interface ModifyFogEvent {
         private float renderDistanceEnd;
         private float skyEnd;
         private float cloudEnd;
+        private Vector4f color;
 
-        public FogBuilder(float environmentalStart, float environmentalEnd, float renderDistanceStart, float renderDistanceEnd, float skyEnd, float cloudEnd) {
+        public FogBuilder(Vector4f color, float environmentalStart, float environmentalEnd, float renderDistanceStart, float renderDistanceEnd, float skyEnd, float cloudEnd) {
+            this.color = color;
             this.environmentalStart = environmentalStart;
             this.environmentalEnd = environmentalEnd;
             this.renderDistanceStart = renderDistanceStart;
@@ -45,6 +47,7 @@ public interface ModifyFogEvent {
             this.cloudEnd = cloudEnd;
         }
 
+        public Vector4f getColor() {return color;}
         public float getEnvironmentalStart() { return environmentalStart; }
         public float getEnvironmentalEnd() { return environmentalEnd; }
         public float getRenderDistanceStart() { return renderDistanceStart; }
@@ -52,6 +55,7 @@ public interface ModifyFogEvent {
         public float getSkyEnd() { return skyEnd; }
         public float getCloudEnd() { return cloudEnd; }
 
+        public FogBuilder setColor(Vector4f color2) {this.color = color2; return this;}
         public FogBuilder setEnvironmentalStart(float v) { this.environmentalStart = v; return this; }
         public FogBuilder setEnvironmentalEnd(float v) { this.environmentalEnd = v; return this; }
         public FogBuilder setRenderDistanceStart(float v) { this.renderDistanceStart = v; return this; }

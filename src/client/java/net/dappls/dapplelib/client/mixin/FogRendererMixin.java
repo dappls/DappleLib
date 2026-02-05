@@ -9,7 +9,6 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.render.fog.FogData;
 import net.minecraft.client.render.fog.FogRenderer;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.math.Vec3d;
 import org.joml.Vector4f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,6 +32,7 @@ public abstract class FogRendererMixin  {
 
 
         ModifyFogEvent.FogBuilder builder = new ModifyFogEvent.FogBuilder(
+                vanillaColor,
                 fogData.environmentalStart,
                 fogData.environmentalEnd,
                 fogData.renderDistanceStart,
@@ -40,10 +40,13 @@ public abstract class FogRendererMixin  {
                 fogData.skyEnd,
                 fogData.cloudEnd
         );
-        ModifyFogEvent.FogBuilder result = ModifyFogEvent.EVENT.invoker().getFogBuilder(new Vec3d(vanillaColor.x,vanillaColor.y,vanillaColor.z), builder);
+        ModifyFogEvent.FogBuilder result = ModifyFogEvent.EVENT.invoker().getFogBuilder(builder);
 
         if (result == null) { return; }
 
+        vanillaColor.x = result.getColor().x;
+        vanillaColor.y = result.getColor().y;
+        vanillaColor.z = result.getColor().z;
         fogData.environmentalStart = result.getEnvironmentalStart();
         fogData.environmentalEnd = result.getEnvironmentalEnd();
         fogData.renderDistanceStart = result.getRenderDistanceStart();
