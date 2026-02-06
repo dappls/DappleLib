@@ -57,7 +57,9 @@ public interface ModifyFogEvent {
         public float getSkyEnd() { return skyEnd; }
         public float getCloudEnd() { return cloudEnd; }
 
-        public FogBuilder setColor(Vector4f color2) {this.color = color2; return this;}
+        public FogBuilder setColor(float r, float g, float b, float a) {
+            this.color = new Vector4f(r,g,b,a); return this;
+        }
         public FogBuilder setEnvironmentalStart(float v) { this.environmentalStart = v; return this; }
         public FogBuilder setEnvironmentalEnd(float v) { this.environmentalEnd = v; return this; }
         public FogBuilder setRenderDistanceStart(float v) { this.renderDistanceStart = v; return this; }
