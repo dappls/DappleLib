@@ -15,10 +15,12 @@ public interface ModifyFogEvent {
             events -> (builder) -> {
                 List<ModifyFogEvent> sortedEvents = new ArrayList<>(Arrays.asList(events));
                 sortedEvents.sort(Comparator.comparingInt(ModifyFogEvent::getPriority));
+                ModifyFogEvent.FogBuilder current = builder;
                 for (ModifyFogEvent event : sortedEvents) {
-                    return builder;
+                    current = event.getFogBuilder(current);
+                    if (current == null) {return null;}
                 }
-                return null;
+                return current;
             });
 
     default int getPriority() {
