@@ -23,7 +23,6 @@ public class ShaderRegistry {
     private static final FramebufferManager fbo = new FramebufferManager();
     private static final FullscreenQuad quad = new FullscreenQuad();
     private static boolean quadInitialized = false;
-    private static long startTimeNanos = -1;
 
     public static void register(Identifier id, Identifier vertexShader, Identifier fragmentShader, ShaderUniformCallback callback) {
         entries.put(id, new ShaderEntry(vertexShader, fragmentShader, callback));
@@ -110,10 +109,8 @@ public class ShaderRegistry {
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, mcTexId);
             entry.program.setUniform1i("u_scene", 0);
 
-            // Default uniforms available to every shader
-            if (startTimeNanos == -1) startTimeNanos = System.nanoTime();
-            float time = (float) ((System.nanoTime() - startTimeNanos) / 1_000_000_000.0);
-            entry.program.setUniform1f("u_time", time);
+            Timekeeper.updateTime();
+            entry.program.setUniform1f("u_time", Timekeeper.Time);
             entry.program.setUniform2f("u_resolution", (float) w, (float) h);
 
             if (entry.callback != null) {
