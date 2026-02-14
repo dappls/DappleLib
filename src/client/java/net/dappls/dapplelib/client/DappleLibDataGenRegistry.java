@@ -14,6 +14,9 @@ import net.minecraft.registry.RegistryWrapper;
 
 
 public interface DappleLibDataGenRegistry {
+
+    String modID();
+
     void registerRecipes(RecipeGenerator gen);
 
     void registerItemModels(ItemModelGenerator gen);

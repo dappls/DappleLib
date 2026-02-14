@@ -1,10 +1,9 @@
 package net.dappls.dapplelib;
 
-import net.dappls.dapplelib.chunk.BlockTransformAction;
 import net.dappls.dapplelib.chunk.ModifyChunks;
+import net.dappls.dapplelib.worldgen.DappleLibBiomeRegistry;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Identifier;
+import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,13 +13,16 @@ public class Dapplelib implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ModifyChunks.modifyChunk(new BlockTransformAction(null,false,
-                Blocks.GRASS_BLOCK,Blocks.BONE_BLOCK.getDefaultState()));
-
-
-
         ModifyChunks.init();
-        LOGGER.info("Initializing Library!");
 
+        FabricLoader.getInstance()
+                .getEntrypoints("dapplelib-biome", DappleLibRuntimeRegistry.class)
+                .forEach(entry -> {
+                    DappleLibBiomeRegistry biomeReg = new DappleLibBiomeRegistry(entry.modID());
+                    entry.registerBiomeFeatures(biomeReg);
+                    biomeReg.apply();
+                });
+
+        LOGGER.info("Initializing Library!");
     }
 }
