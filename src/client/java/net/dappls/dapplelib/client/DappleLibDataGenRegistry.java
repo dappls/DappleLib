@@ -3,6 +3,7 @@ package net.dappls.dapplelib.client;
 import net.dappls.dapplelib.client.datagen.loot.DappleLibLootTableProvider;
 import net.dappls.dapplelib.client.datagen.tags.DappleLibBlockTagProvider;
 import net.dappls.dapplelib.client.datagen.tags.DappleLibItemTagProvider;
+import net.dappls.dapplelib.client.datagen.worldgen.DappleLibWorldgenRegistry;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.client.data.BlockStateModelGenerator;
@@ -32,4 +33,7 @@ public interface DappleLibDataGenRegistry {
     void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator, FabricDataGenerator.Pack pack);
 
     void buildRegistry(RegistryBuilder registryBuilder);
+
+    void registerWorldgen(DappleLibWorldgenRegistry provider);
+
 }

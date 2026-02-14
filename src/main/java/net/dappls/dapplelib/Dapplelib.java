@@ -1,13 +1,12 @@
 package net.dappls.dapplelib;
 
-import net.dappls.dapplelib.autoscreen.ScreenKit;
+import net.dappls.dapplelib.chunk.BlockTransformAction;
+import net.dappls.dapplelib.chunk.ModifyChunks;
 import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 public class Dapplelib implements ModInitializer {
     public static final String MOD_ID = "dapplelib";
@@ -15,6 +14,13 @@ public class Dapplelib implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ModifyChunks.modifyChunk(new BlockTransformAction(null,false,
+                Blocks.GRASS_BLOCK,Blocks.BONE_BLOCK.getDefaultState()));
+
+
+
+        ModifyChunks.init();
         LOGGER.info("Initializing Library!");
+
     }
 }

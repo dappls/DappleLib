@@ -8,6 +8,9 @@ import net.dappls.dapplelib.client.datagen.tags.DappleLibBlockTagProvider;
 import net.dappls.dapplelib.client.datagen.tags.DappleLibItemTagProvider;
 import net.dappls.dapplelib.client.datagen.RegistryDataGenerator;
 import net.dappls.dapplelib.client.datagen.enchantment.DappleLibEnchantmentHelper;
+import net.dappls.dapplelib.client.datagen.worldgen.DappleLibConfiguredFeatureProvider;
+import net.dappls.dapplelib.client.datagen.worldgen.DappleLibPlacedFeatureProvider;
+import net.dappls.dapplelib.client.datagen.worldgen.DappleLibWorldgenRegistry;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.loader.api.FabricLoader;
@@ -31,6 +34,15 @@ public class DapplelibClientDataGeneratorEntrypoint implements DataGeneratorEntr
         List<DappleLibDataGenRegistry> registries = FabricLoader.getInstance()
                 .getEntrypoints("dapplelib-datagen", DappleLibDataGenRegistry.class);
         registries.forEach(dappleLibDataGenRegistry -> dappleLibDataGenRegistry.onInitializeDataGenerator(fabricDataGenerator,pack));
+        DappleLibWorldgenRegistry worldgenRegistry = new DappleLibWorldgenRegistry("dapplelibtest");
+
+        registries.forEach(dappleLibDataGenRegistry ->
+                dappleLibDataGenRegistry.registerWorldgen(worldgenRegistry));
+
+        pack.addProvider((output, registriesFuture) ->
+                new DappleLibConfiguredFeatureProvider(output, registriesFuture, worldgenRegistry));
+        pack.addProvider((output, registriesFuture) ->
+                new DappleLibPlacedFeatureProvider(output, registriesFuture, worldgenRegistry));
     }
 
     @Override
